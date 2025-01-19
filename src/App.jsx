@@ -6,8 +6,8 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<HomePage />}></Route>
-        <Route path="/:cca3" element={<CountryDetail />}></Route>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/:countryName" element={<CountryDetail />} />
       </Routes>
     </BrowserRouter>
   );
