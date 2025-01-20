@@ -48,7 +48,7 @@ const CountryDetail = () => {
     <>
       <Navbar />
       <div
-        className={`p-10 h-screen ${
+        className={`p-10   ${
           isDarkMode ? "bg-[#212E37] text-white" : "bg-gray-50"
         }`}
       >
@@ -56,8 +56,8 @@ const CountryDetail = () => {
           to="/"
           className={`p-2 flex
              shadow-lg w-24 md:ml-6 md:mb-16 ${
-            isDarkMode ? "bg-[#2b3743] text-white" : "bg-white"
-          }`}
+               isDarkMode ? "bg-[#2b3743] text-white" : "bg-white"
+             }`}
         >
           <FaArrowLeft className="mt-1 mr-2" />
           Back
@@ -143,6 +143,11 @@ const CountryDetail = () => {
             <p>Loading...</p>
           )}
         </div>
+        <div
+          className={`${
+            isDarkMode ? "bg-[#2b3743] text-white " : "bg-white"
+          }  mb-[13.8rem]`}
+        ></div>
       </div>
     </>
   );

@@ -84,7 +84,7 @@ const HomePage = () => {
     <>
       <Navbar />
       <div
-        className={`pt-6 pl-3   pb-6 ${
+        className={`pt-6 pl-3    pb-6 ${
           isDarkMode ? "bg-[#202D36]" : "bg-slate-50"
         }`}
       >
@@ -206,16 +206,16 @@ const HomePage = () => {
         </div>
 
         <div
-          className="flex pl-1 flex-col justify-center
+          className="flex justify-center  flex-col 
          gap-3 mt-6    align-middle md:justify-center md:flex-row md:flex-wrap md:gap-20   xl:pr-20 "
         >
           {filterData.map((country) => (
             <div
               onClick={() => navigate(`/${country.name.common}`)}
               key={country.name.common}
-              className={`flex flex-col w-64 mt-5 ${
+              className={`flex flex-col  w-64 mt-5 ${
                 isDarkMode ? "bg-[#2b3743] text-white " : "bg-white"
-              } text-start justify-self-center`}
+              } text-start justify-center`}
             >
               <div className="shadow-lg">
                 <img
@@ -241,6 +241,11 @@ const HomePage = () => {
             </div>
           ))}
         </div>
+        <div
+          className={` ${
+            isDarkMode ? "bg-[#2b3743] text-white " : "bg-white"
+          }  mb-[18.3rem]`}
+        ></div>
       </div>
     </>
   );
