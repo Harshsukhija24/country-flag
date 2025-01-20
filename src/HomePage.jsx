@@ -206,7 +206,7 @@ const HomePage = () => {
         </div>
 
         <div
-          className="flex justify-center  flex-col 
+          className="flex justify-center  items-center flex-col 
          gap-3 mt-6    align-middle md:justify-center md:flex-row md:flex-wrap md:gap-20   xl:pr-20 "
         >
           {filterData.map((country) => (
