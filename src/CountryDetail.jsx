@@ -1,14 +1,14 @@
 import { useState, useEffect, useContext } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import Navbar from "./Components/Navbar";
 import { ThemeContext } from "./Provider/themeContext";
 import { FaArrowLeft } from "react-icons/fa";
+
+import BorderCountries from "./Components/BorderCountry";
 
 const CountryDetail = () => {
   const { isDarkMode } = useContext(ThemeContext);
   const { countryName } = useParams();
   const navigate = useNavigate();
-
   const [countryDetail, setCountryDetail] = useState(null);
   const [borderCountries, setBorderCountries] = useState([]);
 
@@ -28,25 +28,23 @@ const CountryDetail = () => {
         console.error("Error fetching country details:", error);
       }
     }
-
     async function fetchBorderCountryNames(borders) {
       try {
         const res = await fetch(
           `https://restcountries.com/v3.1/alpha?codes=${borders}`
         );
         const data = await res.json();
+
         setBorderCountries(data);
       } catch (error) {
         console.error("Error fetching border country names:", error);
       }
     }
-
     fetchCountryDetail();
   }, [countryName]);
 
   return (
     <>
-      <Navbar />
       <div
         className={`p-10   ${
           isDarkMode ? "bg-[#212E37] text-white" : "bg-gray-50"
@@ -115,28 +113,12 @@ const CountryDetail = () => {
                       "Unknown"}
                   </p>
                 </div>
-                <div className="">
-                  <p className="font-medium">Borders:</p>
-                  {borderCountries.length > 0 ? (
-                    borderCountries.map((borderCountry) => (
-                      <button
-                        key={borderCountry.cca3}
-                        className={`${
-                          isDarkMode
-                            ? "bg-[#2b3743] text-white"
-                            : "bg-white text-black"
-                        } border rounded px-2 py-1 m-1 shadow`}
-                        onClick={() =>
-                          navigate(`/${borderCountry.name.common}`)
-                        }
-                      >
-                        {borderCountry.name.common}
-                      </button>
-                    ))
-                  ) : (
-                    <span>No bordering countries</span>
-                  )}
-                </div>
+
+                <BorderCountries
+                  borderCountries={borderCountries}
+                  isDarkMode={isDarkMode}
+                  navigate={navigate}
+                />
               </div>
             </div>
           ) : (

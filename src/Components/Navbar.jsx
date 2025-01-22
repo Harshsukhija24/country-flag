@@ -12,7 +12,6 @@ const Navbar = () => {
     >
       <h3 className="font-bold text-xl md:pl-12  ">Where is the World?</h3>
       <div>
-        {/* <FontAwesomeIcon icon="fa-light fa-moon" /> */}
         <button
           onClick={toggle}
           className=" text-sm flex md:font-bold md:text-l pt-1 md:pr-12 "

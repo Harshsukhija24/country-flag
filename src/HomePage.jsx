@@ -1,12 +1,13 @@
 import { useState, useEffect, useContext } from "react";
-import Navbar from "./Components/Navbar";
 import { useNavigate } from "react-router-dom";
 import { ThemeContext } from "./Provider/themeContext";
 import { FaArrowUp } from "react-icons/fa";
 import { FaArrowDown } from "react-icons/fa";
+
+import CountryGrid from "./Components/CountryGrid";
+
 const HomePage = () => {
   const { isDarkMode } = useContext(ThemeContext);
-
   const [allData, setAllData] = useState([]);
   const [query, setQuery] = useState("");
   const [countryName, setCountryName] = useState("");
@@ -61,12 +62,6 @@ const HomePage = () => {
     setAllData(sorted);
   }
 
-  // const filterData = query
-  //   ? allData.filter((country) =>
-  //       country.name.common.toLowerCase().includes(query.toLowerCase())
-  //     )
-  //   : allData;
-
   const filterData = allData
     .filter(
       (country) =>
@@ -82,7 +77,6 @@ const HomePage = () => {
 
   return (
     <>
-      <Navbar />
       <div
         className={`pt-6 pl-3    pb-6 ${
           isDarkMode ? "bg-[#202D36]" : "bg-slate-50"
@@ -205,42 +199,11 @@ const HomePage = () => {
           </select>
         </div>
 
-        <div
-          className="flex justify-center  items-center flex-col 
-         gap-3 mt-6    align-middle md:justify-center md:flex-row md:flex-wrap md:gap-20   xl:pr-20 "
-        >
-          {filterData.map((country) => (
-            <div
-              onClick={() => navigate(`/${country.name.common}`)}
-              key={country.name.common}
-              className={`flex flex-col  w-64 mt-5 ${
-                isDarkMode ? "bg-[#2b3743] text-white " : "bg-white"
-              } text-start justify-center`}
-            >
-              <div className="shadow-lg">
-                <img
-                  src={country.flags.png}
-                  alt={country.name.common}
-                  className="w-full h-32 object-cover"
-                />
-                <h1 className="pl-3 mt-4 font-semibold mb-1">
-                  {country.name.common}
-                </h1>
-                <p className="pl-3">
-                  <span className="font-medium">Population:</span>{" "}
-                  {country.population}
-                </p>
-                <p className="pl-3">
-                  <span className="font-medium">Region:</span> {country.region}
-                </p>
-                <p className="pl-3 mb-5">
-                  <span className="font-medium">Capital:</span>{" "}
-                  {country.capital}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
+        <CountryGrid
+          filterData={filterData}
+          navigate={navigate}
+          isDarkMode={isDarkMode}
+        />
         <div
           className={` ${
             isDarkMode ? "bg-[#2b3743] text-white " : "bg-white"
